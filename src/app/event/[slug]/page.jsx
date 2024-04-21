@@ -90,7 +90,10 @@ export default function Page({ params }) {
 
   return (
     <>
-      <div className="flex justify-between items-center  mb-5">
+      <Link href="/">
+        <button class="btn">⬅️ Back</button>
+      </Link>
+      <div className="flex justify-between items-center mt-5 mb-5">
         <h2 className="text-2xl font-bold">Detail event</h2>
       </div>
       <div>

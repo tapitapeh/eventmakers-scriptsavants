@@ -2,6 +2,7 @@
 
 import MainForm from "@/components/MainForm";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Page({ params }) {
   const [event, setEvent] = useState({});
@@ -21,7 +22,10 @@ export default function Page({ params }) {
 
   return (
     <div>
-      <div className="flex justify-between items-center  mb-5">
+      <Link href={`/event/${params.slug}`}>
+        <button class="btn">⬅️ Back</button>
+      </Link>
+      <div className="flex justify-between items-center mt-5 mb-5">
         <h2 className="text-2xl font-bold">Edit event</h2>
       </div>
 
