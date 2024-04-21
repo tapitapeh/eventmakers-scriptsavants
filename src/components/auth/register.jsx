@@ -1,7 +1,6 @@
 "use client";
-import React from "react";
 
-export const register = () => {
+export const Register = () => {
   const formRef = useRef();
   const [message, setMessage] = useState("");
 
@@ -38,10 +37,10 @@ export const register = () => {
         <h1>Sign Up</h1>
         <p>Sign Up For Have Acces!</p>
       </section>
-      <form ref={formRef}>
-        <input name="Name" placeholder="Full Name" />
-        <input name="Email" placeholder="email@domain.com" />
-        <input name="Password" placeholder="Password" type="password" />
+      <form ref={formRef} action={handleRegister}>
+        <input name="name" placeholder="Full Name" />
+        <input name="email" placeholder="email@domain.com" />
+        <input name="password" placeholder="Password" type="password" />
         <button>Sign Up!</button>
       </form>
       {message !== "" ? <div>{message}</div> : null}
