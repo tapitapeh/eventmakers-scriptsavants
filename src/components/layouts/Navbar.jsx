@@ -29,7 +29,7 @@ export default function Navbar() {
     router.push("/login");
   }
   return (
-    <div className="navbar fixed z-50 bg-base-100">
+    <div className="navbar fixed z-50 bg-base-100 shadow-lg">
       <div className="flex-1">
         <Link href="/" className="btn btn-ghost text-xl">
           Cari Acara
@@ -68,8 +68,13 @@ export default function Navbar() {
               className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
             >
               <li>
-                <a className="justify-between">Profile</a>
+                <Link href="/my-events" className="justify-between font-bold">
+                  My Events
+                </Link>
               </li>
+              {/* <li>
+                <a className="justify-between">Profile</a>
+              </li> */}
               <li>
                 <a className="justify-between" onClick={logout}>
                   Logout
