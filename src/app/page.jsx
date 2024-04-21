@@ -5,8 +5,8 @@ export default async function Home() {
   const { data } = await res.json();
 
   return (
-    <main className="min-h-screen">
-      <div className="grid grid-cols-3 gap-5 bg-white p-5">
+    <main className="min-h-screen bg-white">
+      <div className="grid lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-5 bg-white">
         {data.map((detail, index) => {
           return <EventCard key={index} event={detail.events} />;
         })}

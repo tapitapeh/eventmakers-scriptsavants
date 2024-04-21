@@ -29,9 +29,11 @@ export default function Navbar() {
     router.push("/login");
   }
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar fixed z-50 bg-base-100 shadow-lg">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">Cari Acara</a>
+        <Link href="/" className="btn btn-ghost text-xl">
+          Cari Acara
+        </Link>
       </div>
       <div className="flex-none gap-2">
         <div className="form-control">
@@ -49,16 +51,6 @@ export default function Navbar() {
           </div>
         ) : (
           <div className="dropdown dropdown-end">
-            {/* <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
-              <div className="w-10 rounded-full bg-red-500 flex items-center justify-center">
-                <span>{user.name.charAt(0)}</span>
-              </div>
-            </div> */}
-
             <div
               tabIndex={0}
               role="button"
@@ -76,8 +68,13 @@ export default function Navbar() {
               className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
             >
               <li>
-                <a className="justify-between">Profile</a>
+                <Link href="/my-events" className="justify-between font-bold">
+                  My Events
+                </Link>
               </li>
+              {/* <li>
+                <a className="justify-between">Profile</a>
+              </li> */}
               <li>
                 <a className="justify-between" onClick={logout}>
                   Logout
