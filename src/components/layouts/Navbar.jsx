@@ -50,38 +50,43 @@ export default function Navbar() {
             </Link>
           </div>
         ) : (
-          <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar placeholder"
-            >
-              <div className="bg-neutral text-neutral-content rounded-full w-24">
-                <span className="text-xl">
-                  {user.name.charAt(0).toUpperCase()}
-                </span>
+          <>
+            <Link href="/event/create">
+              <button className="btn btn-primary">Create event</button>
+            </Link>
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar placeholder"
+              >
+                <div className="bg-neutral text-neutral-content rounded-full w-24">
+                  <span className="text-xl">
+                    {user.name.charAt(0).toUpperCase()}
+                  </span>
+                </div>
               </div>
-            </div>
 
-            <ul
-              tabIndex={0}
-              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <Link href="/my-events" className="justify-between font-bold">
-                  My Events
-                </Link>
-              </li>
-              {/* <li>
+              <ul
+                tabIndex={0}
+                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <Link href="/my-events" className="justify-between font-bold">
+                    My Events
+                  </Link>
+                </li>
+                {/* <li>
                 <a className="justify-between">Profile</a>
               </li> */}
-              <li>
-                <a className="justify-between" onClick={logout}>
-                  Logout
-                </a>
-              </li>
-            </ul>
-          </div>
+                <li>
+                  <a className="justify-between" onClick={logout}>
+                    Logout
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </>
         )}
       </div>
     </div>
