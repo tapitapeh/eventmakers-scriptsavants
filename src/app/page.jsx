@@ -6,7 +6,7 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-white">
-      <div className="grid lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-5 bg-white p-5">
+      <div className="grid lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-5 bg-white">
         {data.map((detail, index) => {
           return <EventCard key={index} event={detail.events} />;
         })}
