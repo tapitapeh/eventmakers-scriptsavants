@@ -36,15 +36,11 @@ export default function Navbar() {
         </Link>
       </div>
       <div className="flex-none gap-2">
-        <div className="form-control">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered w-24 md:w-auto"
-          />
-        </div>
         {!loggedIn ? (
-          <div>
+          <div className="flex gap-2">
+            <Link href="/register">
+              <button className="btn btn-primary">Register</button>
+            </Link>
             <Link href="/login">
               <button className="btn btn-primary">Login</button>
             </Link>
