@@ -4,6 +4,8 @@ import Calendar from "@/components/icons/Calendar";
 import IconBack from "@/components/icons/IconBack";
 import IconParticipant from "@/components/icons/IconParticipant";
 import Link from "next/link";
+import Cookies from "js-cookie";
+
 /* 
   TODO:
   - [x] Implement get event API
@@ -54,7 +56,6 @@ export default function Page({ params }) {
       },
     });
     const { data } = await res.json();
-    console.log("🚀 ~ getOrganizer ~ data:", data);
     if (res.status === 200 && data !== undefined) {
       setOrganizer(data[0]);
     }
@@ -64,16 +65,24 @@ export default function Page({ params }) {
     if (confirm("Are you sure you want to remove this event?")) {
       // DELETE Event API
       const token = Cookies.get("token");
-      const res = await fetch("https://eventmakers.devscale.id/events/", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(data),
-      });
+      const res = await fetch(
+        `https://eventmakers.devscale.id/events/${params.slug}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       // TODO : Redirect to home after delete
+      if (res.status === 200 || res.status === 201) {
+        const jsonRes = await res.json();
+        alert(jsonRes.message);
+
+        window.location.href = `/my-events`;
+      }
     } else {
       // Do nothing
     }

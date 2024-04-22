@@ -24,7 +24,7 @@ export default function Page({ params }) {
   return (
     <div>
       <Link href={`/event/${params.slug}`}>
-        <button class="btn flex items-center gap-2">
+        <button className="btn flex items-center gap-2">
           <IconBack />
           Back
         </button>
@@ -33,7 +33,7 @@ export default function Page({ params }) {
         <h2 className="text-2xl font-bold">Edit event</h2>
       </div>
 
-      <MainForm value={event} />
+      <MainForm value={event} slug={params.slug} />
     </div>
   );
 }
