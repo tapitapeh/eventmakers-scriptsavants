@@ -132,9 +132,9 @@ export default function Page({ params }) {
         <h2 className="text-2xl font-bold">Detail event</h2>
       </div>
       <div>
-        <div className="flex gap-5 w-full">
+        <div className="flex flex-col sm:flex-row gap-5 w-full">
           {/* image */}
-          <div className="flex-shrink-0 w-1/4 rounded-xl overflow-hidden">
+          <div className="flex-shrink-0 w-full sm:w-1/4 rounded-xl overflow-hidden">
             <img
               src={event.image}
               alt={event.title}

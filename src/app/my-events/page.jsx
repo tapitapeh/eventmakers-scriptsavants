@@ -30,7 +30,7 @@ export default function Page() {
       <div className="flex justify-between items-center  mb-5">
         <h2 className="text-2xl font-bold">My Events</h2>
       </div>
-      <div className="grid lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-5 bg-white">
+      <div className="grid lg:grid-cols-4 sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-5 bg-white">
         {events.length ? (
           events.map((detail, index) => {
             // if (checkIfAuthor(detail.events))
