@@ -38,7 +38,7 @@ export default function Page() {
           })
         ) : (
           <div className="text-center col-span-full py-40">
-            <p className="text-lg">You don't have any events</p>
+            <p className="text-lg">You don&apos;t have any events</p>
             <div></div>
             <Link href="/event/create">
               <button className="btn btn-primary mt-5">Create event</button>
