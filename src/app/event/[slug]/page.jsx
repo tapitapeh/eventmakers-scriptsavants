@@ -1,5 +1,8 @@
 "use client";
 
+import Calendar from "@/components/icons/Calendar";
+import IconBack from "@/components/icons/IconBack";
+import IconParticipant from "@/components/icons/IconParticipant";
 import Link from "next/link";
 /* 
   TODO:
@@ -15,6 +18,7 @@ export default function Page({ params }) {
   const [isAuthor, setIsAuthor] = useState(false);
   const [event, setEvent] = useState({});
   const [participants, setParticipants] = useState([]);
+  const [organizer, setOrganizer] = useState({});
   const joinFormRef = useRef(null);
 
   async function getEvent() {
@@ -34,6 +38,25 @@ export default function Page({ params }) {
       setIsAuthor(true);
     } else {
       setIsAuthor(false);
+    }
+
+    getOrganizer(_event.author);
+  }
+
+  async function getOrganizer(id) {
+    // Get User API
+    const token = process.env.NEXT_PUBLIC_DEFAULT_TOKEN;
+    const res = await fetch(`https://eventmakers.devscale.id/users/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const { data } = await res.json();
+    console.log("🚀 ~ getOrganizer ~ data:", data);
+    if (res.status === 200 && data !== undefined) {
+      setOrganizer(data[0]);
     }
   }
 
@@ -91,7 +114,10 @@ export default function Page({ params }) {
   return (
     <>
       <Link href="/">
-        <button class="btn">⬅️ Back</button>
+        <button className="btn flex items-center gap-2">
+          <IconBack />
+          Back
+        </button>
       </Link>
       <div className="flex justify-between items-center mt-5 mb-5">
         <h2 className="text-2xl font-bold">Detail event</h2>
@@ -100,11 +126,25 @@ export default function Page({ params }) {
         <div className="flex gap-5 w-full">
           {/* image */}
           <div className="flex-shrink-0 w-1/4 rounded-xl overflow-hidden">
-            <img src={event.image} alt={event.title} className="w-full" />
+            <img
+              src={event.image}
+              alt={event.title}
+              className="w-full"
+              onError={(event) => {
+                event.target.src = "/img/devscale-placeholder-dark.svg";
+                event.onerror = null;
+              }}
+            />
           </div>
           <div className="space-y-5 w-full">
             <div className="flex justify-between">
-              <h1 className="text-3xl font-bold">{event.title}</h1>
+              <div>
+                <h1 className="text-3xl font-bold">{event.title}</h1>
+                <div className="mt-2 text-sm">
+                  Organized by{" "}
+                  <span className="font-bold">{organizer.name}</span>
+                </div>
+              </div>
               {isAuthor ? (
                 <div className="flex gap-2">
                   <Link href={`/event/${params.slug}/edit`}>
@@ -117,12 +157,12 @@ export default function Page({ params }) {
               ) : (
                 <div className="flex gap-2">
                   <button
-                    className="btn"
+                    className="btn btn-primary"
                     onClick={() =>
                       document.getElementById("join-modal").showModal()
                     }
                   >
-                    Join
+                    Join now
                   </button>
 
                   <dialog id="join-modal" className="modal">
@@ -187,22 +227,27 @@ export default function Page({ params }) {
                 </div>
               )}
             </div>
-            <p className="text-gray-900">{event.dateTime}</p>
 
-            {/* participant */}
-            {participants.length ? (
-              <button
-                className="btn"
-                onClick={() =>
-                  document.getElementById("participants-modal").showModal()
-                }
-              >
-                👥 {participants.length} participant
-                {participants.length > 1 ? "s" : ""}
-              </button>
-            ) : (
-              <p className="text-sm text-gray-600">No participants yet</p>
-            )}
+            <div className="flex items-center gap-5">
+              <div className="text-sm font-bold flex items-center gap-2">
+                <Calendar />
+                {event.dateTime}
+              </div>
+              {/* participant */}
+              {participants.length ? (
+                <button
+                  className="btn btn-sm btn-ghost flex items-center gap-2"
+                  onClick={() =>
+                    document.getElementById("participants-modal").showModal()
+                  }
+                >
+                  <IconParticipant /> {participants.length} participant
+                  {participants.length > 1 ? "s" : ""}
+                </button>
+              ) : (
+                <p className="text-sm text-gray-600">No participants yet</p>
+              )}
+            </div>
 
             <dialog id="participants-modal" className="modal">
               <div className="modal-box">
@@ -244,7 +289,8 @@ export default function Page({ params }) {
               </div>
             </dialog>
             <hr />
-            <div>
+            <div className="space-y-3">
+              <h3 className="font-bold text-lg">About event</h3>
               <p>{event.description}</p>
             </div>
           </div>
