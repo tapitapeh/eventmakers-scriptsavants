@@ -37,7 +37,10 @@ export default function Navbar() {
       </div>
       <div className="flex-none gap-2">
         {!loggedIn ? (
-          <div>
+          <div className="flex gap-2">
+            <Link href="/register">
+              <button className="btn btn-primary">Register</button>
+            </Link>
             <Link href="/login">
               <button className="btn btn-primary">Login</button>
             </Link>
