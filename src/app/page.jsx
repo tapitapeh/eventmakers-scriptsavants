@@ -32,10 +32,6 @@ export default function Page() {
     <main className="min-h-screen bg-white">
       <div className="flex justify-between items-center  mb-5">
         <h2 className="text-2xl font-bold">My Events</h2>
-
-        <Link href="/event/create">
-          <button className="btn btn-primary">Create event</button>
-        </Link>
       </div>
       <div>
         <input
@@ -47,7 +43,7 @@ export default function Page() {
           className="input input-bordered w-full"
         />
       </div>
-      <div className="grid lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-5 bg-white mt-5">
+      <div className="grid sm:grid-cols-3 grid-cols-2 gap-5 bg-white mt-5">
         {filteredEvents.length ? (
           filteredEvents.map((detail, index) => {
             return <EventCard key={index} event={detail.events} />;
