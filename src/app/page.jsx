@@ -31,7 +31,7 @@ export default function Page() {
   return (
     <main className="min-h-screen bg-white">
       <div className="flex justify-between items-center  mb-5">
-        <h2 className="text-2xl font-bold">My Events</h2>
+        <h2 className="text-2xl font-bold">Events</h2>
       </div>
       <div>
         <input
