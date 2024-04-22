@@ -43,7 +43,7 @@ export default function Page() {
           className="input input-bordered w-full"
         />
       </div>
-      <div className="grid sm:grid-cols-3 grid-cols-2 gap-5 bg-white mt-5">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-5 bg-white mt-5">
         {filteredEvents.length ? (
           filteredEvents.map((detail, index) => {
             return <EventCard key={index} event={detail.events} />;
